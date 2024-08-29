@@ -76,6 +76,7 @@ public class RewardsServiceImpl implements RewardsService {
 	/**
 	 * @param t
 	 * @return
+         * @Constants used daysInMonths = 30, firstRewardLimit = 50, secondRewardLimit = 100
 	 */
 	public Long calculateRewards(Transaction t) {
 		if (t.getTransactionAmount() > Constants.firstRewardLimit

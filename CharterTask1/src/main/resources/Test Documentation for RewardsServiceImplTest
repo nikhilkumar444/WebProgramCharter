@@ -1,0 +1,58 @@
+Test Documentation for RewardsServiceImplTest
+Overview
+The RewardsServiceImplTest class contains unit tests for the RewardsServiceImpl class. These tests ensure that the rewards calculation logic and transaction processing are functioning correctly. The tests use JUnit 5 and Mockito to mock dependencies and verify the behavior of the service methods.
+
+Prerequisites
+JUnit 5: Ensure you have JUnit 5 as a dependency in your project for running the tests.
+Mockito: Mockito is used for mocking the TransactionRepository and verifying interactions.
+Spring Boot Test: The @SpringBootTest annotation is used to load the Spring application context for integration tests.
+Test Methods
+1. testGetRewardsByCustomerId()
+Purpose: Test the getRewardsByCustomerId() method in the RewardsServiceImpl class. This method calculates the reward points for a given customer ID based on transactions from the last three months.
+
+Mock TransactionRepository to return specific transactions for different time ranges.
+Transactions used in this test are:
+transaction1: $120, 30 days ago
+transaction2: $80, 60 days ago
+transaction3: $150, 90 days ago
+Assertions:
+
+Verify that the rewards calculated for the last month, the second-to-last month, and the third-to-last month are correct.
+Expected rewards:
+Last month: 40 points
+Second month: 30 points
+Third month: 100 points
+Total: 170 points
+
+2. testGetRewardsPerMonth()
+Purpose: Test the getRewardsPerMonth() method in the RewardsServiceImpl class. This method calculates the reward points for a list of transactions for a given month.
+
+Create mock transactions for the current month.
+Transactions used:
+transaction1: $120
+transaction2: $80
+Assertions:
+
+Verify that the total rewards for the given transactions are correctly calculated.
+Expected rewards: 90 points (20 * 2 + 30)
+
+3. testCalculateRewards()
+Purpose: Test the calculateRewards() method in the RewardsServiceImpl class. This method calculates the reward points for a single transaction based on the transaction amount.
+
+Create mock transactions with varying amounts.
+Transactions used:
+transaction1: $120
+transaction2: $80
+transaction3: $45
+Assertions:
+
+Verify the reward points for each transaction based on the amount.
+Expected rewards:
+$120: 40 points (120 - 100) * 2
+$80: 30 points (80 - 50)
+$45: 0 points (below 50)
+
+Running Tests
+To run the tests:
+
+Using Maven: Execute mvn test in the project directory.
